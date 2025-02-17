@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34928.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "p5rpc.qol.customizablengplus", "p5rpc.qol.customizablengplus\p5rpc.qol.customizablengplus.csproj", "{EC848C91-88D4-47E3-8E07-DAB43729F14D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC848C91-88D4-47E3-8E07-DAB43729F14D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC848C91-88D4-47E3-8E07-DAB43729F14D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC848C91-88D4-47E3-8E07-DAB43729F14D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC848C91-88D4-47E3-8E07-DAB43729F14D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CCF097E0-B2A5-4C97-8AB5-B704EDF18E1D}
+	EndGlobalSection
+EndGlobal

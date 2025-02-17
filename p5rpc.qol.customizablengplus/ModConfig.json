@@ -1,0 +1,28 @@
+{
+  "ModId": "p5rpc.qol.customizablengplus",
+  "ModName": "Customizable NG+",
+  "ModAuthor": "RVRZERO",
+  "ModVersion": "1.0.0",
+  "ModDescription": "Let you choose what to transfer to your NG+ playthrough!",
+  "ModDll": "p5rpc.qol.customizablengplus.dll",
+  "ModIcon": "Preview.png",
+  "ModR2RManagedDll32": "x86/p5rpc.qol.customizablengplus.dll",
+  "ModR2RManagedDll64": "x64/p5rpc.qol.customizablengplus.dll",
+  "ModNativeDll32": "",
+  "ModNativeDll64": "",
+  "IsLibrary": false,
+  "ReleaseMetadataFileName": "p5rpc.qol.customizablengplus.ReleaseMetadata.json",
+  "PluginData": {},
+  "IsUniversalMod": false,
+  "ModDependencies": [
+    "p5rpc.lib",
+    "p5rpc.modloader",
+    "Reloaded.Memory.SigScan.ReloadedII",
+    "reloaded.sharedlib.hooks"
+  ],
+  "OptionalDependencies": [],
+  "SupportedAppId": [
+    "p5r.exe"
+  ],
+  "ProjectUrl": ""
+}
