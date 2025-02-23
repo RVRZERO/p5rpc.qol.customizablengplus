@@ -8,99 +8,99 @@ namespace p5rpc.qol.customizablengplus.Configuration
     {
         [Category("Life Sim")]
         [DisplayName("Money")]
-        [Description("This is a bool.")]
+        [Description("Enable this to carry over Money to NG+.")]
         [DefaultValue(false)]
-        public bool Money { get; set; } = true;
+        public bool Money { get; set; } = false;
 
         [Category("Life Sim")]
         [DisplayName("Social Stats")]
-        [Description("This is a bool.")]
+        [Description("Enable this to carry over Social Stats to NG+.")]
         [DefaultValue(false)]
-        public bool SocialStats { get; set; } = true;
+        public bool SocialStats { get; set; } = false;
 
         [Category("Metaverse")]
         [DisplayName("Persona Compendium")]
-        [Description("This is a bool.")]
+        [Description("Enable this to carry over the Persona Compendium to NG+.")]
         [DefaultValue(false)]
-        public bool Compendium { get; set; } = true;
+        public bool Compendium { get; set; } = false;
 
         [Category("Metaverse")]
         [DisplayName("Mementos Stamps")]
-        [Description("This is a bool.")]
+        [Description("Enable this to carry over Mementos Stamps to NG+.")]
         [DefaultValue(false)]
-        public bool Stamps { get; set; } = true;
+        public bool Stamps { get; set; } = false;
 
         [Category("Metaverse")]
-        [DisplayName("HP and SP Increases")]
-        [Description("This is a bool.")]
+        [DisplayName("HP & SP Increases")]
+        [Description("Enable this to carry over HP & SP Increases to NG+.")]
         [DefaultValue(false)]
-        public bool HPandSP { get; set; } = true;
+        public bool HPandSP { get; set; } = false;
 
         [Category("Metaverse")]
-        [DisplayName("Jazz Persona Stats Increases")]
-        [Description("This is a bool.")]
+        [DisplayName("Jazz Club Stats Increases")]
+        [Description("Enable this to carry over Jazz Club Stats Increases to NG+.")]
         [DefaultValue(false)]
-        public bool Jazzstats { get; set; } = true;
+        public bool JazzStats { get; set; } = false;
 
         [Category("Metaverse")]
         [DisplayName("Jazz Club Skills")]
-        [Description("This is a bool.")]
+        [Description("Enable this to carry over Jazz Club Skills to NG+.")]
         [DefaultValue(false)]
-        public bool Jazzskills { get; set; } = true;
+        public bool JazzSkills { get; set; } = false;
 
         [Category("Metaverse")]
-        [DisplayName("Enemy Analysis")]
-        [Description("This is a bool.")]
+        [DisplayName("Enemy Analysis Data")]
+        [Description("Enable this to carry over Enemy Analysis Data to NG+.")]
         [DefaultValue(false)]
-        public bool Enemyanalysis { get; set; } = true;
+        public bool EnemyAnalysisData { get; set; } = false;
 
         [Category("Inventory")]
         [DisplayName("Melee Weapons")]
-        [Description("This is a bool.")]
+        [Description("Enable this to carry over Melee Weapons to NG+.")]
         [DefaultValue(false)]
-        public bool Melee { get; set; } = true;
+        public bool Melee { get; set; } = false;
 
         [Category("Inventory")]
         [DisplayName("Ranged Weapons")]
-        [Description("This is a bool.")]
+        [Description("Enable this to carry over Ranged Weapons to NG+.")]
         [DefaultValue(false)]
-        public bool Ranged { get; set; } = true;
+        public bool Ranged { get; set; } = false;
 
         [Category("Inventory")]
         [DisplayName("Protectors")]
-        [Description("This is a bool.")]
+        [Description("Enable this to carry over Protectors to NG+.")]
         [DefaultValue(false)]
-        public bool Protectors { get; set; } = true;
+        public bool Protectors { get; set; } = false;
 
         [Category("Inventory")]
         [DisplayName("Accessories")]
-        [Description("This is a bool.")]
+        [Description("Enable this to carry over Accessories to NG+.")]
         [DefaultValue(false)]
-        public bool Accessories { get; set; } = true;
+        public bool Accessories { get; set; } = false;
 
         [Category("Inventory")]
         [DisplayName("Skill Cards")]
-        [Description("This is a bool.")]
+        [Description("Enable this to carry over Skill Cards to NG+.")]
         [DefaultValue(false)]
-        public bool SkillCards { get; set; } = true;
+        public bool SkillCards { get; set; } = false;
 
         [Category("Inventory")]
         [DisplayName("Key Items")]
-        [Description("This is a bool.")]
+        [Description("Enable this to carry over Key Items to NG+.")]
         [DefaultValue(false)]
-        public bool Keyitems { get; set; } = true;
+        public bool KeyItems { get; set; } = false;
 
         [Category("Inventory")]
         [DisplayName("Miscellaneous")]
-        [Description("This is a bool.")]
+        [Description("Enable this to carry over the Perma-Pick, SP Recovery Gifts from Confidants, Fishing Pools, Dart Set, and Jump Cue to NG+.")]
         [DefaultValue(false)]
-        public bool Miscellaneous { get; set; } = true;
+        public bool Miscellaneous { get; set; } = false;
 
-        [Category("Fixes")]
-        [DisplayName("Challenge Battle Score/Rewards Reset")]
-        [Description("This is a bool.")]
+        [Category("Additions")]
+        [DisplayName("Challenge Battle\nScores Reset")]
+        [Description("Enable this to reset Challenge Battle Scores and allow you to win the rewards again in NG+.")]
         [DefaultValue(false)]
-        public bool Challenge { get; set; } = true;
+        public bool ResetChallengeBattles { get; set; } = false;
     }
 
     /// <summary>

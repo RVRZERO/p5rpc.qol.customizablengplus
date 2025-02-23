@@ -84,7 +84,7 @@ namespace p5rpc.qol.customizablengplus
             var reloadedHooksController = _modLoader.GetController<IReloadedHooks>();
             if (reloadedHooksController == null || !reloadedHooksController.TryGetTarget(out var reloadedHooks))
             {
-                throw new Exception("Failed to get IStartupScanner Controller");
+                throw new Exception("Failed to get IReloadedHooks Controller");
             }
 
             var p5rLibController = _modLoader.GetController<IP5RLib>();
@@ -150,176 +150,166 @@ namespace p5rpc.qol.customizablengplus
 
             var memory = Memory.Instance;
 
-            if (_configuration.Enemyanalysis)
+            // Life Sim
+
+            if (_configuration.Money)
             {
-                SigScan(                                                   "BA 0C 0D 00 00 48 8D 0D ?? ?? ?? ?? E8", "ENEMY_ANALYSIS_SEGMENT_1", address =>
+                SigScan("C7 05 ?? ?? ?? ?? D0 07 00 00 BA 01 00 00 00", "MONEY", address =>
                 {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90 90 90 90 90".Replace(" ", "")));
-                });
-
-                SigScan(                                                   "E8 ?? ?? ?? ?? BA 00 57 00 00", "ENEMY_ANALYSIS_SEGMENT_2", address =>
-                {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90".Replace(" ", "")));
-                });
-            }
-
-            if (_configuration.Compendium)
-            {
-                SigScan(                                                   "BA 00 57 00 00 48 8D 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 4C 8D 2D", "COMPENDIUM_SEGMENT_1", address =>
-                {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90 90 90 90 90".Replace(" ", "")));
-                });
-
-                SigScan(                                                   "E8 ?? ?? ?? ?? 4C 8D 2D ?? ?? ?? ?? 41 8B C4 49 8B CD 81 39 42 00 00 40", "COMPENDIUM_SEGMENT_2", address =>
-                {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90".Replace(" ", "")));
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 10))));
                 });
             }
 
             if (_configuration.SocialStats)
             {
-                SigScan(                                                   "66 45 89 A4 ?? ?? ?? ?? ?? 83 F9 05", "SOCIAL_STATS", address =>
+                SigScan("66 45 89 A4 ?? ?? ?? ?? ?? 83 F9 05", "SOCIAL_STATS", address =>
                 {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90 90".Replace(" ", "")));
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 9))));
                 });
             }
 
-            if (_configuration.Ranged)
+            // Metaverse
+
+            if (_configuration.Compendium)
             {
-                SigScan(                                                   "46 88 A4 ?? ?? ?? ?? ?? 81 F9 00 01 00 00", "RANGED_WEAPONS_CUSTOMIZATION", address =>
+                SigScan("BA 00 57 00 00 48 8D 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 4C 8D 2D", "COMPENDIUM_1", address =>
                 {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90".Replace(" ", "")));
-                });
-            }
-
-            if (_configuration.Money)
-            {
-                SigScan(                                                   "C7 05 ?? ?? ?? ?? D0 07 00 00 BA 01 00 00 00", "MONEY", address =>
-                {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90 90 90".Replace(" ", "")));
-                });
-            }
-
-            if (_configuration.HPandSP)
-            {
-                SigScan(                                                   "48 69 C8 A0 02 00 00 46 89 A4", "HP&SP_INCREASES_SEGMENT_1", address =>
-                {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90".Replace(" ", "")));
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 17))));
                 });
 
-                SigScan(                                                   "46 89 A4 ?? ?? ?? ?? ?? 83 FA 0B", "HP&SP_INCREASES_SEGMENT_2", address =>
+                SigScan("49 8B CC 48 0F 45 C8", "COMPENDIUM_2", address =>
                 {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90".Replace(" ", "")));
-                });
-            }
-
-            if (_configuration.Melee)
-            {
-                SigScan(                                                   "E8 ?? ?? ?? ?? 8B C3 41 B0 ?? 48 C1 E8 0C 66 23 DE 33 D2 0F B7 CB FF 54 ?? ?? FF C7 48 8D 05", "MELEE_WEAPONS", address =>
-                {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90".Replace(" ", "")));
-                });
-            }
-
-            if (_configuration.Protectors)
-            {
-                SigScan(                                                   "E8 ?? ?? ?? ?? 0F B7 C3 41 B0 ?? 48 C1 E8 0C 66 23 DE 33 D2 0F B7 CB FF 54 ?? ?? FF C7 B8 00 10 00 00", "PROTECTORS", address =>
-                {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90".Replace(" ", "")));
-                });
-            }
-
-            if (_configuration.Accessories)
-            {
-                SigScan(                                                   "E8 ?? ?? ?? ?? 0F B7 C3 41 B0 ?? 48 C1 E8 0C 66 23 DE 33 D2 0F B7 CB FF 54 ?? ?? FF C7 B8 00 20 00 00", "ACCESSORIES", address =>
-                {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90".Replace(" ", "")));
-                });
-            }
-
-            if (_configuration.SkillCards)
-            {
-                SigScan(                                                   "E8 ?? ?? ?? ?? 0F B7 C3 41 B0 ?? 48 C1 E8 0C 66 23 DE 33 D2 0F B7 CB FF 54 ?? ?? FF C7 B8 00 60 00 00", "SKILL_CARDS", address =>
-                {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90".Replace(" ", "")));
-                });
-            }
-
-            if (_configuration.Ranged)
-            {
-                SigScan(                                                   "E8 ?? ?? ?? ?? 0F B7 C3 41 B0 ?? 48 C1 E8 0C 66 23 DE 33 D2 0F B7 CB FF 54 ?? ?? FF C7 B8 00 80 00 00", "RANGED_WEAPONS", address =>
-                {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90".Replace(" ", "")));
-                });
-            }
-
-            if (_configuration.Miscellaneous)
-            {
-                SigScan(                                                   "E8 ?? ?? ?? ?? 8B C3 41 B0 ?? 48 C1 E8 0C 66 23 DE 33 D2 0F B7 CB FF 54 ?? ?? FF C7 48 8D 0D", "MISCELLANEOUS", address =>
-                {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90".Replace(" ", "")));
-                });
-            }
-
-            if (_configuration.Keyitems)
-            {
-                SigScan(                                                   "E8 ?? ?? ?? ?? 8B C3 41 B0 ?? 48 C1 E8 0C 66 23 DE 33 D2 0F B7 CB FF 54 ?? ?? FF C7 83 FF 29", "KEY_ITEMS", address =>
-                {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90".Replace(" ", "")));
-                });
-
-                SigScan(                                                   "41 21 00 4C 8D 05", "CONFIDANT_ULTIMATE_PERSONA_UNLOCKS", address =>
-                {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90".Replace(" ", "")));
-                });
-            }
-
-            if (_configuration.Jazzstats)
-            {
-                SigScan(                                                   "44 88 64 ?? ?? 83 F8 05", "JAZZ_PERSONA_STATS", address =>
-                {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90".Replace(" ", "")));
-                });
-            }
-
-            if (_configuration.SkillCards)
-            {
-                SigScan(                                                   "BA 80 00 00 00 48 8D 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 41 8B CC", "YUSUKE_SKILL_CARDS_DUPLICATION_DATA", address =>
-                {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90".Replace(" ", "")));
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 12))));
                 });
             }
 
             if (_configuration.Stamps)
             {
-                SigScan(                                                   "44 89 A4 ?? ?? ?? ?? ?? 44 88 A4", "MEMENTOS_PLATFORM_STAMPS", address =>
+                SigScan("44 89 A4 ?? ?? ?? ?? ?? 44 88 A4", "MEMENTOS_PLATFORM_STAMPS", address =>
                 {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90".Replace(" ", "")));
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 8))));
                 });
 
-                SigScan(                                                   "44 88 A4 ?? ?? ?? ?? ?? 83 F9 0A", "MEMENTOS_RANDOM_STAMPS", address =>
+                SigScan("44 88 A4 ?? ?? ?? ?? ?? 83 F9 0A", "MEMENTOS_RANDOM_STAMPS", address =>
                 {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90".Replace(" ", "")));
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 8))));
                 });
             }
 
-            if (_configuration.Jazzskills)
+            if (_configuration.HPandSP)
             {
-                SigScan(                                                   "BA 30 00 00 00 48 8D 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 4C 8D 9C 24", "JAZZ_SKILLS_SEGMENT_1", address =>
+                SigScan("46 89 A4 ?? ?? ?? ?? ?? 83 FA 0B", "HP&SP_INCREASES", address =>
                 {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90".Replace(" ", "")));
-                });
-
-                SigScan(                                                   "4C 89 25 ?? ?? ?? ?? 49 8B 5B ?? 49 8B 73 ?? 49 8B 7B ?? 4C 89 25", "JAZZ_SKILLS_SEGMENT_2", address =>
-                {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90".Replace(" ", "")));
-                });
-
-                SigScan(                                                   "4C 89 25 ?? ?? ?? ?? 4C 89 25 ?? ?? ?? ?? 4C 89 25 ?? ?? ?? ?? 4C 89 25 ?? ?? ?? ?? 44 89 25 ?? ?? ?? ?? 49 8B E3 41 5F 41 5E 41 5D 41 5C 5D C3 85 C0", "JAZZ_SKILLS_SEGMENT_3", address =>
-                {
-                    memory.SafeWrite((nuint)address, Convert.FromHexString("90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90".Replace(" ", "")));
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 8))));
                 });
             }
+
+            if (_configuration.JazzStats)
+            {
+                SigScan("0F B7 C9 41 8B C4", "JAZZ_PERSONA_STATS", address =>
+                {
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 47))));
+                });
+            }
+
+            if (_configuration.JazzSkills)
+            {
+                SigScan("BA 30 00 00 00 48 8D 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 4C 8D 9C 24", "JAZZ_SKILLS_SEGMENT_1", address =>
+                {
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 17))));
+                });
+
+                SigScan("4C 89 25 ?? ?? ?? ?? 49 8B 5B ?? 49 8B 73 ?? 49 8B 7B ?? 4C 89 25", "JAZZ_SKILLS_SEGMENT_2", address =>
+                {
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 7))));
+                });
+
+                SigScan("4C 89 25 ?? ?? ?? ?? 4C 89 25 ?? ?? ?? ?? 4C 89 25 ?? ?? ?? ?? 4C 89 25 ?? ?? ?? ?? 44 89 25 ?? ?? ?? ?? 49 8B E3 41 5F 41 5E 41 5D 41 5C 5D C3 85 C0", "JAZZ_SKILLS_SEGMENT_3", address =>
+                {
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 35))));
+                });
+            }
+
+            if (_configuration.EnemyAnalysisData)
+            {
+                SigScan("BA 0C 0D 00 00 48 8D 0D ?? ?? ?? ?? E8", "ENEMY_ANALYSIS_DATA", address =>
+                {
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 17))));
+                });
+            }
+
+            if (_configuration.Melee)
+            {
+                SigScan("E8 ?? ?? ?? ?? 8B C3 41 B0 ?? 48 C1 E8 0C 66 23 DE 33 D2 0F B7 CB FF 54 ?? ?? FF C7 48 8D 05", "MELEE_WEAPONS", address =>
+                {
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 26))));
+                });
+            }
+
+            if (_configuration.Protectors)
+            {
+                SigScan("E8 ?? ?? ?? ?? 0F B7 C3 41 B0 ?? 48 C1 E8 0C 66 23 DE 33 D2 0F B7 CB FF 54 ?? ?? FF C7 B8 00 10 00 00", "PROTECTORS", address =>
+                {
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 27))));
+                });
+            }
+
+            if (_configuration.Accessories)
+            {
+                SigScan("E8 ?? ?? ?? ?? 0F B7 C3 41 B0 ?? 48 C1 E8 0C 66 23 DE 33 D2 0F B7 CB FF 54 ?? ?? FF C7 B8 00 20 00 00", "ACCESSORIES", address =>
+                {
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 27))));
+                });
+            }
+
+            if (_configuration.SkillCards)
+            {
+                SigScan("E8 ?? ?? ?? ?? 0F B7 C3 41 B0 ?? 48 C1 E8 0C 66 23 DE 33 D2 0F B7 CB FF 54 ?? ?? FF C7 B8 00 60 00 00", "SKILL_CARDS", address =>
+                {
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 27))));
+                });
+
+                SigScan("BA 80 00 00 00 48 8D 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 41 8B CC", "YUSUKE_SKILL_CARDS_DUPLICATION_DATA", address =>
+                {
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 17))));
+                });
+            }
+
+            if (_configuration.Ranged)
+            {
+                SigScan("E8 ?? ?? ?? ?? 0F B7 C3 41 B0 ?? 48 C1 E8 0C 66 23 DE 33 D2 0F B7 CB FF 54 ?? ?? FF C7 B8 00 80 00 00", "RANGED_WEAPONS", address =>
+                {
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 27))));
+                });
+
+                SigScan("46 88 A4 ?? ?? ?? ?? ?? 81 F9 00 01 00 00", "RANGED_WEAPONS_CUSTOMIZATION", address =>
+                {
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 8))));
+                });
+            }
+
+            if (_configuration.KeyItems)
+            {
+                SigScan("E8 ?? ?? ?? ?? 8B C3 41 B0 ?? 48 C1 E8 0C 66 23 DE 33 D2 0F B7 CB FF 54 ?? ?? FF C7 83 FF 29", "KEY_ITEMS", address =>
+                {
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 26))));
+                });
+
+                SigScan("49 8B C1 41 8B D1 48 C1 E8 1C 41 83 E1 1F 48 03 C0 48 C1 EA 05 81 E2 FF FF 7F 00 41 0F B6 C9 49 8B 84 ?? ?? ?? ?? ?? 4C 8D 04 ?? B8 01 00 00 00 48 D3 E0 F7 D0 41 21 00 4C 8D 05", "CONFIDANT_RELATED", address =>
+                {
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 63))));
+                });
+            }
+
+            if (_configuration.Miscellaneous)
+            {
+                SigScan("E8 ?? ?? ?? ?? 8B C3 41 B0 ?? 48 C1 E8 0C 66 23 DE 33 D2 0F B7 CB FF 54 ?? ?? FF C7 48 8D 0D", "MISCELLANEOUS", address =>
+                {
+                    memory.SafeWrite((nuint)address, Convert.FromHexString(string.Concat(Enumerable.Repeat("90", 26))));
+                });
+            }
+
+            // Fixes
 
             void ClearInheritanceData_Custom()
             {
@@ -348,7 +338,7 @@ namespace p5rpc.qol.customizablengplus
                 return;
             }
 
-            if (_configuration.Challenge)
+            if (_configuration.ResetChallengeBattles)
             {
                 ScanForData("Challenge Battle Data Reference", "48 8D 0D ?? ?? ?? ?? F3 44 0F 10 1D ?? ?? ?? ?? 49 83 C7 0C", 7, 3, 2, address =>
                 {
