@@ -2,7 +2,7 @@
   "ModId": "p5rpc.qol.customizablengplus",
   "ModName": "Customizable NG+",
   "ModAuthor": "RVRZERO",
-  "ModVersion": "1.0.0",
+  "ModVersion": "0.9.0",
   "ModDescription": "Let you choose what to transfer to your NG+ playthrough!",
   "ModDll": "p5rpc.qol.customizablengplus.dll",
   "ModIcon": "Preview.png",
@@ -17,6 +17,7 @@
   "ModDependencies": [
     "p5rpc.lib",
     "p5rpc.modloader",
+    "reloaded.universal.fileemulationframework.bmd",
     "Reloaded.Memory.SigScan.ReloadedII",
     "reloaded.sharedlib.hooks"
   ],
