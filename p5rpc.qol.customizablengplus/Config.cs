@@ -98,7 +98,7 @@ namespace p5rpc.qol.customizablengplus.Configuration
 
         [Category("Additions")]
         [DisplayName("Challenge Battle\nScores Reset")]
-        [Description("Enable this to reset Challenge Battle Scores and allow you to win the rewards again in NG+.")]
+        [Description("Enabling this will allow you to get the rewards again if you win but will reset your previous scores.")]
         [DefaultValue(false)]
         public bool ResetChallengeBattles { get; set; } = false;
     }

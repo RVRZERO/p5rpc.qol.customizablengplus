@@ -1,29 +1,37 @@
 {
   "ModId": "p5rpc.qol.customizablengplus",
-  "ModName": "Customizable NG+",
+  "ModName": "Customizable NG\u002B",
   "ModAuthor": "RVRZERO",
-  "ModVersion": "0.9.0",
-  "ModDescription": "Let you choose what to transfer to your NG+ playthrough!",
+  "ModVersion": "1.0.0",
+  "ModDescription": "Let you choose what to transfer to your NG\u002B playthrough!",
   "ModDll": "p5rpc.qol.customizablengplus.dll",
   "ModIcon": "Preview.png",
   "ModR2RManagedDll32": "x86/p5rpc.qol.customizablengplus.dll",
   "ModR2RManagedDll64": "x64/p5rpc.qol.customizablengplus.dll",
   "ModNativeDll32": "",
   "ModNativeDll64": "",
+  "Tags": [],
+  "CanUnload": null,
+  "HasExports": null,
   "IsLibrary": false,
   "ReleaseMetadataFileName": "p5rpc.qol.customizablengplus.ReleaseMetadata.json",
-  "PluginData": {},
+  "PluginData": {
+    "GameBanana": {
+      "ItemType": "Mod",
+      "ItemId": 580462
+    }
+  },
   "IsUniversalMod": false,
   "ModDependencies": [
     "p5rpc.lib",
     "p5rpc.modloader",
-    "reloaded.universal.fileemulationframework.bmd",
     "Reloaded.Memory.SigScan.ReloadedII",
-    "reloaded.sharedlib.hooks"
+    "reloaded.sharedlib.hooks",
+    "reloaded.universal.fileemulationframework.bmd"
   ],
   "OptionalDependencies": [],
   "SupportedAppId": [
     "p5r.exe"
   ],
-  "ProjectUrl": ""
+  "ProjectUrl": "https://gamebanana.com/mods/580462"
 }
