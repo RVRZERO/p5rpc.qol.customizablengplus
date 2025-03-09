@@ -204,7 +204,7 @@ namespace p5rpc.qol.customizablengplus
                 });
             }
 
-            if (_configuration.JazzStats)
+            if (_configuration.PersonaStats)
             {
                 SigScan("0F B7 C9 41 8B C4", "JAZZ_PERSONA_STATS", address =>
                 {

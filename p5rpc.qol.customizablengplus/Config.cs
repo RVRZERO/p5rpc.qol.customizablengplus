@@ -32,15 +32,15 @@ namespace p5rpc.qol.customizablengplus.Configuration
 
         [Category("Metaverse")]
         [DisplayName("HP & SP Increases")]
-        [Description("Enable this to carry over HP & SP Increases to NG+.")]
+        [Description("Enable this to carry over everyone's HP & SP Increases to NG+.")]
         [DefaultValue(false)]
         public bool HPandSP { get; set; } = false;
 
         [Category("Metaverse")]
-        [DisplayName("Jazz Club Stats Increases")]
-        [Description("Enable this to carry over Jazz Club Stats Increases to NG+.")]
+        [DisplayName("Persona Stats Increases")]
+        [Description("Enable this to carry over party members Persona Stats Increases to NG+.")]
         [DefaultValue(false)]
-        public bool JazzStats { get; set; } = false;
+        public bool PersonaStats { get; set; } = false;
 
         [Category("Metaverse")]
         [DisplayName("Jazz Club Skills")]
